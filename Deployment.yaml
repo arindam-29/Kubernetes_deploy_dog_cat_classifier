@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dogcatclassifier-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dogcatclassifier
+  template:
+    metadata:
+      labels:
+        app: dogcatclassifier
+    spec:
+      containers:
+      - name: dogcatclassifier-container
+        image: arindam29/dog-cat:ver1
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 9000
+        env:
+        - name: PORT
+          value: "9000"  # Note: Environment variable values are strings
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "2048M"
+          limits:
+            cpu: "500m"
+            memory: "2048M"
+      imagePullSecrets:
+      - name: my-ecr-secret
