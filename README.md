@@ -5,7 +5,7 @@ Deploy dog_cat classifier from Dockerhub to Kubernetes clusters (locally using M
 
 ### Prerequisites
 
-Before you begin, make sure you have [Docker](https://docs.docker.com/get-docker/) installed on your machine also install [Minikube] (https://minikube.sigs.k8s.io/docs/start/)
+Before you begin, make sure you have [Docker](https://docs.docker.com/get-docker/) installed on your machine also install [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 
 ### Building Kubernetes cluster:
 1. Start Minikube:
