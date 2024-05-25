@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dogcatclassifier-deployment
+  name: dogcat-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: dogcatclassifier
+      app: dogcat
   template:
     metadata:
       labels:
-        app: dogcatclassifier
+        app: dogcat
     spec:
       containers:
-      - name: dogcatclassifier-container
+      - name: dogcat-container
         image: arindam29/dog-cat:ver1
-        imagePullPolicy: Never
+        #imagePullPolicy: Never
         ports:
         - containerPort: 9000
         env:
@@ -30,3 +30,16 @@ spec:
             memory: "2048M"
       imagePullSecrets:
       - name: my-ecr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dogcat-service
+spec:
+  selector:
+    app: dogcat
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+  type: NodePort
